@@ -1,0 +1,30 @@
+<nb-card>
+  <nb-card-header>
+    Device Management
+  </nb-card-header>
+
+  <nb-card>
+    <nb-card-header>Customer</nb-card-header>
+    <nb-card-body>
+      <div class="form-group">
+        <label>Select</label>
+        <select class="form-control" (selectionChange)="onSelection($event)" >
+          <option>Cellcom</option>
+          <option>Vodafone GR</option>
+          <option>Telefonica</option>
+          <option>Orodo</option>
+          <option>Wind Italy</option>
+          <option>TIM Italy</option>
+          <option>Vodafone Italy</option>
+          <option>Vodafone UK</option>
+        </select>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
