@@ -34,13 +34,13 @@ export const NB_CORE_PROVIDERS = [
               endpoint: '/api/auth/users',
             },
             logout:
-             { method: null, redirect: { success: '/', failure: '/' } }
+             { method: null, redirect: { success: '/', failure: '/' } },
         }),
     ],
     forms: {
       login: {
-        rememberMe: false,
         redirectDelay: 0,
+        rememberMe: false,
         showMessages: {
           success: true,
         },
@@ -68,7 +68,7 @@ export const NB_CORE_PROVIDERS = [
         fullName: {
           required: false,
         },
-      }
+      },
     },
   }).providers,
 

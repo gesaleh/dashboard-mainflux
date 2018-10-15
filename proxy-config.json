@@ -12,5 +12,19 @@
      "pathRewrite": {
          "^/api/auth": ""
       }
+  },
+  "/api/things*": {
+     "target": "http://localhost:8182",
+     "secure":false,
+     "pathRewrite": {
+         "^/api": ""
+      }
+  },
+  "/api/channels*": {
+     "target": "http://localhost:8182",
+     "secure":false,
+     "pathRewrite": {
+         "^/api": ""
+      }
   }
 }

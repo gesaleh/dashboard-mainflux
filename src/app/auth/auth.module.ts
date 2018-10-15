@@ -12,8 +12,12 @@ import {
   NbInputModule,
 } from '@nebular/theme';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NbAuthJWTInterceptor } from '@nebular/auth';
+
 import { AuthGuard } from './auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
+
 
 
 @NgModule({
@@ -33,7 +37,11 @@ import { LogoutComponent } from './logout/logout.component';
     // ... here goes our new components
     LogoutComponent,
   ],
-  providers: [AuthGuard],
+  providers: [
+  AuthGuard,
+  {provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
+],
+
 })
 export class NgxAuthModule {
 }

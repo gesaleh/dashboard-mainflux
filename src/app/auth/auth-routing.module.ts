@@ -10,7 +10,6 @@ import {
 } from '@nebular/auth';
 
 import { LogoutComponent } from './logout/logout.component';
-import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
   {

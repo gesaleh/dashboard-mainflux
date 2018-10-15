@@ -16,7 +16,6 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxAuthModule } from './auth/auth.module';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -32,7 +31,7 @@ import { NgxAuthModule } from './auth/auth.module';
   ],
   bootstrap: [AppComponent],
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: APP_BASE_HREF, useValue: '/'},
   ],
 })
 export class AppModule {
