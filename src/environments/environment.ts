@@ -13,5 +13,5 @@ export const environment = {
   signupUrl: '/users',
   loginUrl: '/tokens',
   thingsUrl: '/things',
-  channelsUrl: '/channels'
+  channelsUrl: '/channels',
 };

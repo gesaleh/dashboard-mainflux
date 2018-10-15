@@ -1,30 +1,12 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbAuthModule, NbDummyAuthStrategy } from '@nebular/auth';
+import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
-
-const socialLinks = [
-  {
-    url: 'https://github.com/akveo/nebular',
-    target: '_blank',
-    icon: 'socicon-github',
-  },
-  {
-    url: 'https://www.facebook.com/akveo/',
-    target: '_blank',
-    icon: 'socicon-facebook',
-  },
-  {
-    url: 'https://twitter.com/akveo_inc',
-    target: '_blank',
-    icon: 'socicon-twitter',
-  },
-];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
   getRole() {
@@ -38,18 +20,55 @@ export const NB_CORE_PROVIDERS = [
   ...NbAuthModule.forRoot({
 
     strategies: [
-      NbDummyAuthStrategy.setup({
+      NbPasswordAuthStrategy.setup({
         name: 'email',
-        delay: 3000,
-      }),
+        token: {
+          class: NbAuthJWTToken,
+          key: 'token', // this parameter tells where to look for the token
+        },
+        baseEndpoint: '',
+            login: {
+              endpoint: '/api/auth/tokens',
+            },
+            register: {
+              endpoint: '/api/auth/users',
+            },
+            logout:
+             { method: null, redirect: { success: '/', failure: '/' } }
+        }),
     ],
     forms: {
       login: {
-        socialLinks: socialLinks,
+        rememberMe: false,
+        redirectDelay: 0,
+        showMessages: {
+          success: true,
+        },
       },
       register: {
-        socialLinks: socialLinks,
+        terms: false,
+        redirectDelay: 0,
+        showMessages: {
+          success: true,
+        },
       },
+      logout: {
+        redirectDelay: 200,
+        strategy: 'email',
+      },
+      validation: {
+        password: {
+          required: true,
+          minLength: 6,
+          maxLength: 50,
+        },
+        email: {
+          required: true,
+        },
+        fullName: {
+          required: false,
+        },
+      }
     },
   }).providers,
 
