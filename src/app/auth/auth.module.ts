@@ -12,25 +12,22 @@ import {
   NbInputModule,
 } from '@nebular/theme';
 
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NbAuthJWTInterceptor } from '@nebular/auth';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './auth-token-interceptor.service';
 import { AuthGuard } from './auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
-
-
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     RouterModule,
     NbAlertModule,
     NbInputModule,
     NbButtonModule,
     NbCheckboxModule,
     NgxAuthRoutingModule,
-
     NbAuthModule,
   ],
   declarations: [
@@ -39,7 +36,11 @@ import { LogoutComponent } from './logout/logout.component';
   ],
   providers: [
   AuthGuard,
-  {provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true,
+  },
 ],
 
 })

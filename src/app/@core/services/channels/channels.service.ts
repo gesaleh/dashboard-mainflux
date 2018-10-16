@@ -40,7 +40,6 @@ export class ChannelsService {
     };
 
     if (!channel.connected.length) {
-      console.log('send add ch');
       return this.http.post(environment.channelsUrl, payload);
     }
     return this.http.post(environment.channelsUrl, payload, { observe: 'response' })

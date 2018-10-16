@@ -6,6 +6,7 @@ import { of as observableOf } from 'rxjs';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
+import { NgxAuthModule } from '../auth/auth.module';
 import { AnalyticsService } from './utils/analytics.service';
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
@@ -95,6 +96,7 @@ export const NB_CORE_PROVIDERS = [
 @NgModule({
   imports: [
     CommonModule,
+    NgxAuthModule,
   ],
   exports: [
     NbAuthModule,
