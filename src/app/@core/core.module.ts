@@ -43,7 +43,7 @@ export const NB_CORE_PROVIDERS = [
         redirectDelay: 0,
         rememberMe: false,
         showMessages: {
-          success: true,
+          success: false,
         },
       },
       register: {
@@ -54,7 +54,7 @@ export const NB_CORE_PROVIDERS = [
         },
       },
       logout: {
-        redirectDelay: 200,
+        redirectDelay: 0,
         strategy: 'email',
       },
       validation: {

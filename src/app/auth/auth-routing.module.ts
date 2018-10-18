@@ -13,9 +13,13 @@ import { LogoutComponent } from './logout/logout.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     component: NbAuthComponent,
      children: [
+       {
+         path: '',
+         component: NbLoginComponent,
+       },
        {
          path: 'login',
          component: NbLoginComponent,
