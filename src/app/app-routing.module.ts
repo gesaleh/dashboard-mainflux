@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: 'app/auth/auth.module#NgxAuthModule',
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];
 
