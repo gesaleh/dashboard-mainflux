@@ -4,9 +4,17 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
+  HttpResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import 'rxjs/add/operator/switchMap';
+import { catchError } from 'rxjs/operators';
+import { tap } from "rxjs/operators";
+
+
+
 
 import { NbAuthService } from '@nebular/auth';
 
@@ -22,12 +30,24 @@ export class TokenInterceptor implements HttpInterceptor {
     this.authService = this.inj.get(NbAuthService);
     const jwt = this.authService.getToken().pipe(switchMap(t => t.getValue()));
     console.log('Token: ', jwt);
-    request = request.clone({
-      setHeaders: {
-        Authorization: `${jwt}`,
-      },
-    });
+    request = request.clone({ headers: request.headers.set( 'Authorization:', 'Bearer ' + jwt)}
+    );
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+	tap(
+        	event => {
+          	//logging the http response to browser's console in case of a success
+          	if (event instanceof HttpResponse) {
+            	console.log("api call success :", event);
+          	}
+       	},
+	error => {
+          //logging the http response to browser's console in case of a failuer
+          if (event instanceof HttpResponse) {
+            console.log("api call error :", event);
+          }
+        }
+      )
+      );
   }
 }

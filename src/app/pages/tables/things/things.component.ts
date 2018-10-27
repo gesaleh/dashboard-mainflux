@@ -7,7 +7,7 @@ import { Thing } from '../../../@core/store/models';
 import { ThingsStore } from '../../../@core/store/things.store';
 import { ChannelsStore } from '../../../@core/store/channels.store';
 
-import { SmartTableService } from '../../../@core/data/smart-table.service';
+import { ThingsService } from '../../../@core/services/things/things.service';
 
 @Component({
   selector: 'ngx-smart-table',
@@ -58,7 +58,7 @@ export class ThingsComponent {
 
 
   constructor(
-    private service: SmartTableService,
+    private service: ThingsService,
     public thingsStore: ThingsStore,
     public channelsStore: ChannelsStore,
   ) {

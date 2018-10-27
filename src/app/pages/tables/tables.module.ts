@@ -10,6 +10,8 @@ import { ChannelsStore } from '../../@core/store/channels.store';
 import { UiStore } from '../../@core/store/ui.store';
 import { ThingsService } from '../../@core/services/things/things.service';
 import { ChannelsService } from '../../@core/services/channels/channels.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../../auth/auth-token-interceptor.service';
 
 
 @NgModule({
@@ -26,12 +28,15 @@ import { ChannelsService } from '../../@core/services/channels/channels.service'
     ButtonRenderComponent,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     SmartTableService,
     ThingsStore,
     ChannelsStore,
     UiStore,
     ThingsService,
     ChannelsService,
+    HttpClientModule,
+
 
   ],
 })
