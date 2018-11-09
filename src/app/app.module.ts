@@ -8,7 +8,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { NgxAuthModule } from './auth/auth.module';
+import { TokenInterceptor } from './auth/auth-token-interceptor.service';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +26,7 @@ import { ThemeModule } from './@theme/theme.module';
     BrowserAnimationsModule,
     NgxAuthModule,
     AppRoutingModule,
+    HttpClientModule,
 
     NgbModule.forRoot(),
     CoreModule.forRoot(),
@@ -30,6 +35,7 @@ import { ThemeModule } from './@theme/theme.module';
   bootstrap: [AppComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/'},
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
   ],
 })
 export class AppModule {

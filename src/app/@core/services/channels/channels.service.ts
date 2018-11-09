@@ -4,7 +4,9 @@ import { Observable, of } from 'rxjs';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { switchMap } from 'rxjs/operators';
+//import { switchMap } from 'rxjs/operators';
+import 'rxjs/add/operator/switchMap';
+
 
 import { environment } from '../../../../environments/environment';
 import { Channel, Thing } from '../../store/models';
