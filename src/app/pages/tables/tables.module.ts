@@ -37,7 +37,6 @@ import { TokenInterceptor } from '../../auth/auth-token-interceptor.service';
     ChannelsService,
     HttpClientModule,
 
-
   ],
 })
 export class TablesModule { }
