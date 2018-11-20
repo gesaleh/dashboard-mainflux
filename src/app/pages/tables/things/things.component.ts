@@ -32,6 +32,7 @@ export class ThingsComponent {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave: true,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -82,9 +83,13 @@ export class ThingsComponent {
   }
 
   ngOnInit() {
-    this.thingsStore.getThings()
+    //const data = this.thingsStore.getThings();
+    this.service.getThings().subscribe((payload: any) => {
+    	console.log("DATA2" ,payload.things);
+        this.things = payload.things;
+    	this.source.load(this.things);
+    });
     this.channelsStore.getChannels();
-    //this.source.load(data);
   }
 
   onCreateConfirm(event): void {
@@ -93,9 +98,24 @@ export class ThingsComponent {
       event.confirm.resolve();
       this.thingsStore.addThing(event.newData);
     }
+
+   onSaveConfirm(event): void {
+    if (window.confirm('Are you sure you want to save?')) {
+      console.log("Test on Edit ");
+      console.log(event.newData);
+      event.confirm.resolve();
+      this.thingsStore.editThing(event.newData);
+    } else {
+      event.confirm.reject();
+    }
+  }
+
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
+      console.log("Test on delete ");
+      console.log(event);
       event.confirm.resolve();
+      this.thingsStore.deleteThing(event.data);
     } else {
       event.confirm.reject();
     }
