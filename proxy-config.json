@@ -13,14 +13,14 @@
          "^/api/auth": ""
       }
   },
-  "/api/things*": {
+  "/api/things/*": {
      "target": "http://localhost:8182",
      "secure":false,
      "pathRewrite": {
          "^/api": ""
       }
   },
-  "/api/channels*": {
+  "/api/channels/*": {
      "target": "http://localhost:8182",
      "secure":false,
      "pathRewrite": {

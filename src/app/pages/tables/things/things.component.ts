@@ -87,7 +87,7 @@ export class ThingsComponent {
     this.service.getThings().subscribe((payload: any) => {
     	console.log("DATA2" ,payload.things);
         this.things = payload.things;
-    	this.source.load(this.things);
+    	this.source.load(payload.things);
     });
     this.channelsStore.getChannels();
   }
@@ -97,6 +97,7 @@ export class ThingsComponent {
       console.log(event.newData);
       event.confirm.resolve();
       this.thingsStore.addThing(event.newData);
+      this.source.refresh();
     }
 
    onSaveConfirm(event): void {
@@ -105,6 +106,7 @@ export class ThingsComponent {
       console.log(event.newData);
       event.confirm.resolve();
       this.thingsStore.editThing(event.newData);
+      this.source.refresh();
     } else {
       event.confirm.reject();
     }
@@ -116,6 +118,7 @@ export class ThingsComponent {
       console.log(event);
       event.confirm.resolve();
       this.thingsStore.deleteThing(event.data);
+      this.source.refresh();
     } else {
       event.confirm.reject();
     }
