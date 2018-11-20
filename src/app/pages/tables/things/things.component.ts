@@ -40,15 +40,31 @@ export class ThingsComponent {
     columns: {
       id: {
         title: 'ID',
-        type: 'number',
+	editable: 'false',
+	addable: false,
       },
-      deviceName: {
+      type: {
+        title: 'Type',
+        type: 'string',
+ 	editor: {
+          type: 'list',
+          config: {
+            list: [{ value: 'app', title: 'App' }, { value: 'device', title: 'Device' }],
+          },
+	},
+      },
+      key: {
+        title: 'Key',
+	editable: 'false',
+	addable: false,
+      },
+      name: {
         title: 'Device Name',
         type: 'string',
       },
-      listChannels: {
+      metadata: {
         title: 'Metadata',
-        type: 'string',
+        type: 'textarea',
       }
     },
   };
@@ -66,17 +82,16 @@ export class ThingsComponent {
   }
 
   ngOnInit() {
-    const data = this.thingsStore.getThings();
-    //this.source.load(data);
-    this.thingsStore.getThings();
+    this.thingsStore.getThings()
     this.channelsStore.getChannels();
+    //this.source.load(data);
   }
 
   onCreateConfirm(event): void {
       console.log("Test on add ");
       console.log(event.newData);
       event.confirm.resolve();
-      this.thingsStore.addThing(event);
+      this.thingsStore.addThing(event.newData);
     }
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
