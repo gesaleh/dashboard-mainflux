@@ -6,22 +6,22 @@
 		 	"^/api/auth": ""
 	 	 }
 	},
-  "/api/auth/tokens*": {
+  "/api/auth/tokens/*": {
      "target": "http://localhost:8180",
      "secure":false,
      "pathRewrite": {
          "^/api/auth": ""
       }
   },
-  "/api/things*": {
-     "target": "http://localhost:8182",
+  "/api/things/*": {
+     "target": "http://localhost:8180",
      "secure":false,
      "pathRewrite": {
          "^/api": ""
       }
   },
-  "/api/channels*": {
-     "target": "http://localhost:8182",
+  "/api/channels/*": {
+     "target": "http://localhost:8180",
      "secure":false,
      "pathRewrite": {
          "^/api": ""
