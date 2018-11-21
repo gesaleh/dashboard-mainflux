@@ -8,6 +8,8 @@ import { ThingsStore } from '../../../@core/store/things.store';
 import { ChannelsStore } from '../../../@core/store/channels.store';
 
 import { ThingsService } from '../../../@core/services/things/things.service';
+import { ThingConnectRenderComponent } from './thingconnect.render.component'
+
 
 @Component({
   selector: 'ngx-smart-table',
@@ -67,7 +69,14 @@ export class ThingsComponent {
       metadata: {
         title: 'Metadata',
         type: 'textarea',
-      }
+      },
+      connect: {
+        title: 'Connect Channels',
+        type: 'custom',
+        renderComponent: ThingConnectRenderComponent,
+        defaultValue: 'Connect'
+      },
+
     },
   };
 

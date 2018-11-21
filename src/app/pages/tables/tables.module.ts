@@ -6,6 +6,7 @@ import { TablesRoutingModule, routedComponents } from './tables-routing.module';
 import { SmartTableService } from '../../@core/data/smart-table.service';
 import { ButtonRenderComponent } from './channels/button.render.component';
 import { ConnectedRenderComponent } from './channels/connected.render.component';
+import { ThingConnectRenderComponent } from './things/thingconnect.render.component'
 import { ThingsStore } from '../../@core/store/things.store';
 import { ChannelsStore } from '../../@core/store/channels.store';
 import { UiStore } from '../../@core/store/ui.store';
@@ -26,10 +27,12 @@ import { TokenInterceptor } from '../../auth/auth-token-interceptor.service';
     ...routedComponents,
     ButtonRenderComponent,
     ConnectedRenderComponent,
+    ThingConnectRenderComponent,
   ],
   entryComponents: [
     ButtonRenderComponent,
     ConnectedRenderComponent,
+    ThingConnectRenderComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
