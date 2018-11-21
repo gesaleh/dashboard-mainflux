@@ -5,6 +5,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { TablesRoutingModule, routedComponents } from './tables-routing.module';
 import { SmartTableService } from '../../@core/data/smart-table.service';
 import { ButtonRenderComponent } from './channels/button.render.component';
+import { ConnectedRenderComponent } from './channels/connected.render.component';
 import { ThingsStore } from '../../@core/store/things.store';
 import { ChannelsStore } from '../../@core/store/channels.store';
 import { UiStore } from '../../@core/store/ui.store';
@@ -12,6 +13,7 @@ import { ThingsService } from '../../@core/services/things/things.service';
 import { ChannelsService } from '../../@core/services/channels/channels.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../../auth/auth-token-interceptor.service';
+
 
 
 @NgModule({
@@ -23,9 +25,11 @@ import { TokenInterceptor } from '../../auth/auth-token-interceptor.service';
   declarations: [
     ...routedComponents,
     ButtonRenderComponent,
+    ConnectedRenderComponent,
   ],
   entryComponents: [
     ButtonRenderComponent,
+    ConnectedRenderComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},

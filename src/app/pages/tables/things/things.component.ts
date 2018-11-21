@@ -22,6 +22,7 @@ export class ThingsComponent {
 
 
   settings = {
+    selectMode: 'multi',
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',

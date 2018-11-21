@@ -1,8 +1,17 @@
 import { Component } from '@angular/core';
 
-import { LocalDataSource } from 'ng2-smart-table';
+import { ViewCell, LocalDataSource } from 'ng2-smart-table';
 import { ButtonRenderComponent } from './button.render.component'
+import { ConnectedRenderComponent } from './connected.render.component';
 import { SmartTableService } from '../../../@core/data/smart-table.service';
+import { Observable } from 'rxjs';
+
+import { Channel } from '../../../@core/store/models';
+import { ThingsStore } from '../../../@core/store/things.store';
+import { ChannelsStore } from '../../../@core/store/channels.store';
+import { ChannelsService } from '../../../@core/services/channels/channels.service';
+
+
 
 @Component({
   selector: 'ngx-smart-table',
@@ -38,23 +47,52 @@ export class ChannelsComponent {
         renderComponent: ButtonRenderComponent,
         defaultValue: 'Connect'
       },
-      deviceName: {
-        title: 'Device Name',
+      name: {
+        title: 'Name',
         type: 'string',
       },
-      listChannels: {
-        title: 'List Channels',
-        type: 'string',
+      conncted: {
+        title: 'List Devices',
+        type: 'custom',
+        renderComponent: ConnectedRenderComponent,
+	filterFunction(cell?: any, search?: string): boolean {
+      		const match = cell.indexOf(search) > -1;
+		 console.log("Cell : ", match, search);
+                 return true ;
+        }
       },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
+  channels: Observable<Channel[]>;
+	
+  constructor(
+    private service: ChannelsService,
+    public thingsStore: ThingsStore,
+    public channelsStore: ChannelsStore,
+  ) {
 
-  constructor(private service: SmartTableService) {
-    const data = this.service.getData();
-    this.source.load(data);
   }
+
+  ngOnInit() {
+    const data = this.channelsStore.getChannels();
+    console.log("DATA1" ,data);
+    //this.source.load(data);
+    this.service.getChannels().subscribe((payload: any) => {
+        console.log("DATA2" ,payload);
+        this.channels = payload
+        this.source.load(payload);
+    });
+    this.channelsStore.getChannels();
+  }
+
+
+
+  //constructor(private service: SmartTableService) {
+    //const data = this.service.getData();
+    //this.source.load(data);
+  //}
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
