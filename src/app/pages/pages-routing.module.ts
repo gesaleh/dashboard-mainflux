@@ -7,13 +7,11 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 
 const routes: Routes = [{
-   path: '', component: PagesComponent, 
+  path: '',
+  component: PagesComponent,
   children: [{
     path: 'dashboard',
     component: ECommerceComponent,
-  }, {
-    path: 'iot-dashboard',
-    component: DashboardComponent,
   }, {
     path: 'tables',
     loadChildren: './tables/tables.module#TablesModule',

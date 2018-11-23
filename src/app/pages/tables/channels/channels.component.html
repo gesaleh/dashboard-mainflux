@@ -5,19 +5,6 @@
 
     <nb-card-header>Customer</nb-card-header>
     <nb-card-body>
-      <div class="form-group">
-        <label>Select</label>
-        <select class="form-control">
-          <option>Cellcom</option>
-          <option>Vodafone GR</option>
-          <option>Telefonica</option>
-          <option>Orodo</option>
-          <option>Wind Italy</option>
-          <option>TIM Italy</option>
-          <option>Vodafone Italy</option>
-          <option>Vodafone UK</option>
-        </select>
-      </div>
     	<ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
       (createConfirm)="onCreateConfirm($event)">
     	</ng2-smart-table>
