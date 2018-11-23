@@ -34,14 +34,26 @@ export class SmartTableComponent {
         title: 'ID',
         type: 'number',
       },
-      deviceName: {
-        title: 'Device Name',
+      firstName: {
+        title: 'First Name',
         type: 'string',
       },
-      listChannels: {
-        title: 'List Channels',
+      lastName: {
+        title: 'Last Name',
         type: 'string',
-      }
+      },
+      username: {
+        title: 'Username',
+        type: 'string',
+      },
+      email: {
+        title: 'E-mail',
+        type: 'string',
+      },
+      age: {
+        title: 'Age',
+        type: 'number',
+      },
     },
   };
 

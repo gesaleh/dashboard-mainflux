@@ -71,10 +71,10 @@ export class ThingsComponent {
         type: 'textarea',
       },
       connect: {
-        title: 'Connect Channels',
+        title: 'List Channels',
         type: 'custom',
         renderComponent: ThingConnectRenderComponent,
-        defaultValue: 'Connect'
+        defaultValue: 'List of connected channels'
       },
 
     },

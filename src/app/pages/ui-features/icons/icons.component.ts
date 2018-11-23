@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { icons } from 'eva-icons';
 
 @Component({
   selector: 'ngx-icons',
   styleUrls: ['./icons.component.scss'],
   templateUrl: './icons.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconsComponent {
+
+  evaIcons = [];
+
+  constructor() {
+    this.evaIcons = Object.keys(icons).filter(icon => icon.indexOf('outline') === -1);
+  }
 
   icons = {
 
@@ -27,7 +35,7 @@ export class IconsComponent {
       'nb-skip-backward-outline', 'nb-skip-forward', 'nb-skip-forward-outline', 'nb-snowy-circled',
       'nb-square', 'nb-square-outline', 'nb-star', 'nb-sunny', 'nb-sunny-circled', 'nb-tables', 'nb-title',
       'nb-trash', 'nb-volume-high', 'nb-volume-mute', 'nb-drop', 'nb-drops', 'nb-info', 'nb-expand', 'nb-collapse',
-      'nb-e-commerce'],
+      'nb-e-commerce', 'nb-danger', 'nb-checkmark-circle', 'nb-help'],
 
     ionicons: [
       'ion-ionic', 'ion-arrow-right-b', 'ion-arrow-down-b', 'ion-arrow-left-b', 'ion-arrow-up-c', 'ion-arrow-right-c',

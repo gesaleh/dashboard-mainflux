@@ -7,7 +7,7 @@ import { takeWhile } from 'rxjs/operators';
   styleUrls: ['./country-orders.component.scss'],
   template: `
     <nb-card [size]="breakpoint.width >= breakpoints.md ? 'medium' : 'xxlarge'">
-      <nb-card-header>Country Deployments Statistics</nb-card-header>
+      <nb-card-header>Country Orders Statistics</nb-card-header>
       <nb-card-body>
         <ngx-country-orders-map (select)="selectCountryById($event)"
                                 countryId="USA">
@@ -33,7 +33,7 @@ export class CountryOrdersComponent implements OnDestroy {
 
   countryName = '';
   countryData = [];
-  countriesCategories = ['Gateway', 'PMsensors', 'GasSensors', 'LoRa', 'NBIoT'];
+  countriesCategories = ['Sofas', 'Furniture', 'Lighting', 'Tables', 'Textiles'];
   breakpoint: NbMediaBreakpoint = { name: '', width: 0 };
   breakpoints: any;
 
