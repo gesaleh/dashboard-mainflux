@@ -3,6 +3,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { NbWindowService } from '@nebular/theme';
+import { NbActionsModule } from '@nebular/theme';
 import { TablesRoutingModule, routedComponents } from './tables-routing.module';
 import { SmartTableService } from '../../@core/data/smart-table.service';
 import { ButtonRenderComponent } from './channels/button.render.component';
@@ -23,6 +24,7 @@ import { TokenInterceptor } from '../../auth/auth-token-interceptor.service';
     ThemeModule,
     TablesRoutingModule,
     Ng2SmartTableModule,
+    NbActionsModule,
   ],
   declarations: [
     ...routedComponents,

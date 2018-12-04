@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { LocalDataSource } from 'ng2-smart-table';
@@ -8,6 +8,7 @@ import { ThingsStore } from '../../../@core/store/things.store';
 import { ChannelsStore } from '../../../@core/store/channels.store';
 
 import { ThingsService } from '../../../@core/services/things/things.service';
+import { ChannelsService } from '../../../@core/services/channels/channels.service';
 import { ThingConnectRenderComponent } from './thingconnect.render.component'
 
 
@@ -17,7 +18,11 @@ import { ThingConnectRenderComponent } from './thingconnect.render.component'
   styles: [`
     nb-card {
       transform: translate3d(0, 0, 0);
-    }
+    },
+    nb-actions {
+	actions-bg:#3d3780;
+	actions-separator:#342e73;
+    },
   `],
 })
 export class ThingsComponent {
@@ -86,6 +91,7 @@ export class ThingsComponent {
 
   constructor(
     private service: ThingsService,
+    private cservice: ChannelsService,
     public thingsStore: ThingsStore,
     public channelsStore: ChannelsStore,
   ) {
@@ -132,5 +138,11 @@ export class ThingsComponent {
     } else {
       event.confirm.reject();
     }
+  }
+
+  onSelection(event): void {
+	console.log(event.selected);
+	var id = "1";
+	this.cservice.createThingsConnectRequests(id, event.selected)
   }
 }

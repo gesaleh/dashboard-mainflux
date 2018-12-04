@@ -30,11 +30,13 @@ export class ChannelsComponent {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave: true,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -45,7 +47,9 @@ export class ChannelsComponent {
         title: 'ID',
         type: 'custom',
         renderComponent: ButtonRenderComponent,
-        defaultValue: 'Connect'
+        defaultValue: 'Connect',
+        editable: 'false',
+        addable: false,
       },
       name: {
         title: 'Name',
@@ -59,7 +63,9 @@ export class ChannelsComponent {
       		const match = cell.indexOf(search) > -1;
 		 console.log("Cell : ", match, search);
                  return true ;
-        }
+        },
+ 	editable: 'false',
+        addable: false,
       },
     },
   };
@@ -78,7 +84,6 @@ export class ChannelsComponent {
   ngOnInit() {
     const data = this.channelsStore.getChannels();
     console.log("DATA1" ,data);
-    //this.source.load(data);
     this.service.getChannels().subscribe((payload: any) => {
         console.log("DATA2" ,payload);
         this.channels = payload
@@ -87,15 +92,30 @@ export class ChannelsComponent {
     this.channelsStore.getChannels();
   }
 
+  onCreateConfirm(event): void {
+      const channel = {} as Channel;
+      channel.name = event.newData.name;
+      channel.connected = [];
+      event.confirm.resolve();
+      this.channelsStore.addChannel(channel);
+      this.source.refresh();
+    }
 
-
-  //constructor(private service: SmartTableService) {
-    //const data = this.service.getData();
-    //this.source.load(data);
-  //}
+  onSaveConfirm(event): void {
+      console.log("Test on edit ");
+      console.log(event);
+      event.confirm.resolve();
+      this.channelsStore.editChannel(event);
+      this.source.refresh();
+    }
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
+      console.log("Test on delete ");
+      console.log(event);
+      event.confirm.resolve();
+      this.channelsStore.deleteChannel(event.data);
+      this.source.refresh();
       event.confirm.resolve();
     } else {
       event.confirm.reject();

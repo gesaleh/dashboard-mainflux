@@ -28,7 +28,7 @@ export class ThingConnectRenderComponent implements OnInit {
   }
 
   openWindowForm() {
-    this.windowService.open(ChannelFormComponent, { title: this.renderValue });
+    this.windowService.open(ChannelFormComponent, { title: this.renderValue , context: { name: this.renderValue } });
   }
 
 }

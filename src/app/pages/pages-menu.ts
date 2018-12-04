@@ -12,7 +12,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'Devices',
+    title: 'Admin',
     icon: 'nb-tables',
     children: [
       {
@@ -26,6 +26,34 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Control',
         link: '/pages/tables/smart-table',
+      },
+    ],
+  },
+  {
+    title: 'Lora',
+    icon: 'nb-keypad',
+    children: [
+      {
+        title: 'Config',
+        link: '/pages/lora',
+      },
+      {
+        title: 'Monitor',
+        link: '/pages/lora',
+      },
+    ],
+  },
+  { 
+    title: 'Super Admin',
+    icon: 'nb-gear',
+    children: [
+      { 
+        title: 'Users',
+        link: '/pages/tables/things',
+      },
+      { 
+        title: 'Config',
+        link: '/pages/tables/channels',
       },
     ],
   },
