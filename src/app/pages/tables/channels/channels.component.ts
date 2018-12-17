@@ -10,6 +10,8 @@ import { Channel } from '../../../@core/store/models';
 import { ThingsStore } from '../../../@core/store/things.store';
 import { ChannelsStore } from '../../../@core/store/channels.store';
 import { ChannelsService } from '../../../@core/services/channels/channels.service';
+import { ChannelConnectRenderComponent } from './channelconnect.render.component'
+
 
 
 
@@ -58,12 +60,14 @@ export class ChannelsComponent {
       conncted: {
         title: 'List Devices',
         type: 'custom',
-        renderComponent: ConnectedRenderComponent,
-	filterFunction(cell?: any, search?: string): boolean {
-      		const match = cell.indexOf(search) > -1;
-		 console.log("Cell : ", match, search);
-                 return true ;
-        },
+        renderComponent: ChannelConnectRenderComponent,
+        defaultValue: 'List of connected things',
+        //renderComponent: ConnectedRenderComponent,
+	//filterFunction(cell?: any, search?: string): boolean {
+      	//	const match = cell.indexOf(search) > -1;
+	//	 console.log("Cell : ", match, search);
+        //        return true ;
+        //},
  	editable: 'false',
         addable: false,
       },

@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 
 import { LocalDataSource } from 'ng2-smart-table';
 import { Thing } from '../../../@core/store/models';
@@ -143,6 +144,6 @@ export class ThingsComponent {
   onSelection(event): void {
 	console.log(event.selected);
 	var id = "1";
-	this.cservice.createThingsConnectRequests(id, event.selected)
+	forkJoin(this.cservice.createThingsConnectRequests(id, event.selected));
   }
 }
