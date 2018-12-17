@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ViewCell, Cell, DefaultEditor, Editor } from 'ng2-smart-table';
 import { NbWindowService } from '@nebular/theme';
-import { ChannelFormComponent } from './channel-form/channel-form.component';
+import { ThingsFormComponent } from './channel-form/channel-form.component';
 
 @Component({
   template: `
@@ -9,7 +9,7 @@ import { ChannelFormComponent } from './channel-form/channel-form.component';
   `,
 })
 
-export class ThingConnectRenderComponent implements OnInit {
+export class ChannelConnectRenderComponent implements OnInit {
 
   constructor(private windowService: NbWindowService) {}
 
@@ -28,7 +28,7 @@ export class ThingConnectRenderComponent implements OnInit {
   }
 
   openWindowForm() {
-    this.windowService.open(ChannelFormComponent, { title: this.renderValue , context: { name: this.renderValue } });
+    this.windowService.open(ThingsFormComponent, { title: this.renderValue , context: { name: this.renderValue } });
   }
 
 }

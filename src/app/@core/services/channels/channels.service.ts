@@ -99,6 +99,7 @@ export class ChannelsService {
 
   createThingsConnectRequests(channelId: string , connected: Thing[]) {
     return connected.map((connection) => {
+	console.log(environment.channelsUrl + '/' + channelId + '/things/' + connection.id)
       return this.http.put(environment.channelsUrl + '/' + channelId + '/things/' + connection.id, {});
     });
   }

@@ -11,10 +11,10 @@ import { ChannelsService } from '../../../../@core/services/channels/channels.se
   styles: [`channel-form.component.scss`],
 })
 
-export class ChannelFormComponent {
+export class ThingsFormComponent {
   name: string;
-  channelID : number;
-  thingsList: Array<{name: string, channelID: number}> = []; 
+  channelId : number;
+  thingsList: Array<{name: string}> = []; 
   constructor(
 	public windowRef: NbWindowRef,
 	private service: ChannelsService,
@@ -30,14 +30,14 @@ export class ChannelFormComponent {
         this.channels = payload
         for (let channel of payload) {
         	const id = channel.id;
-        	if ('connected' in channel) {
-            		const devices = channel['connected'];
-			for (let device of devices) {
-				if ( device.name == this.windowRef.config.context['name'] ) {
+	        if ( this.windowRef.config.context['name'] == channel['name'] ) {
+        		if ('connected' in channel) {
+            			const devices = channel['connected'];
+				for (let device of devices) {
 					console.log("id: ",id , "name: ", channel['name'], " ,device", device.name);
-					this.thingsList.push({name: channel.name, channelID: id });
-				}
-            		}
+					this.thingsList.push({name: device.name });
+            		   	}
+			}
         	}
     	}
 	console.log(this.thingsList);
